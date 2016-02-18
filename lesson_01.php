@@ -3,6 +3,12 @@
 $title = 'Lesson 01';
 include('html_header.php');
 
+$categories = [
+    'movies' => 'Filme',
+    'music' => 'Musik',
+    'books' => 'Bücher'
+];
+
 $media = [
 	'movies' => [
 		'Gladiator',
@@ -27,66 +33,48 @@ function getMediaItem($name){
 
 function getNewItem($type){
 	if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
-		echo getMediaItem($_POST['name']);
+		return getMediaItem($_POST['name']);
 	}
+}
+
+function getCategory($key, $name){
+    global $media;
+    if(array_key_exists($key, $media)){
+        $content = '<div class="col-lg-4"><h3>' . $name . '</h3>';
+        $content .= '<div><ul class="list-group">';
+
+        foreach($media[$key] as $element){
+            $content .= getMediaItem($element);
+        }
+
+        $content .= getNewItem($key);
+        $content .= '</ul></div></div>';
+        return $content;
+    }
 }
 
 ?>
 
-    <form action="" method="post">
-        <select name="type">
-            <option>Bitte wählen</option>
-            <option value="movie">Film</option>
-            <option value="music">Musik</option>
-            <option value="book">Buch</option>
-        </select>
-        <input type="text" name="name">
-        <input type="submit" value="speichern">
-    </form>
+<form action="" method="post">
+    <select name="type">
+        <option>Bitte wählen</option>
+        <?php
+        foreach($categories as $category_key => $category_name){
+            echo '<option value="' . $category_key. '">' . $category_name . '</option>';
+        }
+        ?>
+    </select>
+    <input type="text" name="name">
+    <input type="submit" value="speichern">
+</form>
 
 <div class="container newclass">
     <div class="row">
-        <div class="col-lg-4">
-            <h3>
-                Filme
-            </h3>
-            <div>
-                <ul class="list-group">
-					<?php
-					foreach($media['movies'] as $movie){
-						echo getMediaItem($movie);
-					}
-					getNewItem('movie');
-					?>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <h3>
-                Musik
-            </h3>
-                <ul class="list-group">
-					<?php
-					foreach($media['music'] as $music){
-						echo getMediaItem($music);
-					}
-					getNewItem('music');
-					?>
-                </ul>
-        </div>
-        <div class="col-lg-4">
-            <h3>
-                Bücher
-            </h3>
-                <ul class="list-group">
-					<?php
-					foreach($media['books'] as $book){
-						echo getMediaItem($book);
-					}
-					getNewItem('book');
-					?>
-                </ul>
-        </div>
+        <?php
+        foreach($categories as $category_key => $category_name){
+            echo getCategory($category_key, $category_name);
+        }
+        ?>
     </div>
 </div>
 
