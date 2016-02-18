@@ -2,6 +2,35 @@
     // Include the Header for correct HTML Output
 $title = 'Lesson 01';
 include('html_header.php');
+
+$media = [
+	'movies' => [
+		'Gladiator',
+		'Das Boot',
+		'Big Fish'
+	],
+	'music' => [
+		'Tubular Bells',
+		'Nectar I'
+	],
+	'books' => [
+		'Der Club Dumas',
+		'Also Sprach Zarathustra',
+		'Gödel - Escher - Bach',
+		'ES'
+	]
+];
+
+function getMediaItem($name){
+	return '<li class="list-group-item">' . $name . '</li>';
+}
+
+function getNewItem($type){
+	if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
+		echo getMediaItem($_POST['name']);
+	}
+}
+
 ?>
 
     <form action="" method="post">
@@ -23,13 +52,11 @@ include('html_header.php');
             </h3>
             <div>
                 <ul class="list-group">
-                    <li class="list-group-item">Gladiator</li>
-                    <li class="list-group-item">Das Boot</li>
-                    <li class="list-group-item">Big Fish</li>
 					<?php
-					if(array_key_exists('type', $_POST) && $_POST['type'] == 'movie'){
-						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					foreach($media['movies'] as $movie){
+						echo getMediaItem($movie);
 					}
+					getNewItem('movie');
 					?>
                 </ul>
             </div>
@@ -39,12 +66,11 @@ include('html_header.php');
                 Musik
             </h3>
                 <ul class="list-group">
-                    <li class="list-group-item">Tubular Bells</li>
-                    <li class="list-group-item">Nectar I</li>
 					<?php
-					if(array_key_exists('type', $_POST) && $_POST['type'] == 'music'){
-						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					foreach($media['music'] as $music){
+						echo getMediaItem($music);
 					}
+					getNewItem('music');
 					?>
                 </ul>
         </div>
@@ -53,14 +79,11 @@ include('html_header.php');
                 Bücher
             </h3>
                 <ul class="list-group">
-                    <li class="list-group-item">Der Club Dumas</li>
-                    <li class="list-group-item">Also Sprach Zarathustra</li>
-                    <li class="list-group-item">Gödel - Escher - Bach</li>
-                    <li class="list-group-item">ES</li>
 					<?php
-					if(array_key_exists('type', $_POST) && $_POST['type'] == 'book'){
-						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					foreach($media['books'] as $book){
+						echo getMediaItem($book);
 					}
+					getNewItem('book');
 					?>
                 </ul>
         </div>
