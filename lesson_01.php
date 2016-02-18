@@ -26,6 +26,11 @@ include('html_header.php');
                     <li class="list-group-item">Gladiator</li>
                     <li class="list-group-item">Das Boot</li>
                     <li class="list-group-item">Big Fish</li>
+					<?php
+					if(array_key_exists('type', $_POST) && $_POST['type'] == 'movie'){
+						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					}
+					?>
                 </ul>
             </div>
         </div>
@@ -36,6 +41,11 @@ include('html_header.php');
                 <ul class="list-group">
                     <li class="list-group-item">Tubular Bells</li>
                     <li class="list-group-item">Nectar I</li>
+					<?php
+					if(array_key_exists('type', $_POST) && $_POST['type'] == 'music'){
+						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					}
+					?>
                 </ul>
         </div>
         <div class="col-lg-4">
@@ -47,6 +57,11 @@ include('html_header.php');
                     <li class="list-group-item">Also Sprach Zarathustra</li>
                     <li class="list-group-item">Gödel - Escher - Bach</li>
                     <li class="list-group-item">ES</li>
+					<?php
+					if(array_key_exists('type', $_POST) && $_POST['type'] == 'book'){
+						print '<li class="list-group-item">' . $_POST['name'] . '</li>';
+					}
+					?>
                 </ul>
         </div>
     </div>
