@@ -10,7 +10,7 @@ $ratings = [
     '1' => 'lame',
     '2' => 'mediocre',
     '3' => 'pretty cool',
-    '4' => 'awesome as a shark high-fiving a bear during an explosion in space'
+    '4' => 'awesome'
 ];
 
 $categories = [
@@ -34,7 +34,7 @@ $media = [
         ],[
             'title' => 'Big Fish',
             'description' => 'Dream along and tell about it',
-            'rating' => '3',
+            'rating' => '4',
             'tags' => ['tc']
         ]
     ],
@@ -42,7 +42,7 @@ $media = [
         [
             'title' => 'Tubular Bells',
             'description' => 'Because Oldfield has other nice things but moonlight shadow',
-            'rating' => '3',
+            'rating' => '1',
             'tags' => ['dnt']
         ],[
             'title' => 'Nectar I',
@@ -55,12 +55,12 @@ $media = [
         [
             'title' => 'Der Club Dumas',
             'description' => 'Read it and feel the eager to smoke and drink',
-            'rating' => '3',
+            'rating' => '4',
             'tags' => ['fav']
         ],[
             'title' => 'Also sprach Zarathustra',
             'description' => '',
-            'rating' => '3',
+            'rating' => '2',
             'tags' => ['dnt']
         ],[
             'title' => 'Gödel - Escher - Bach',

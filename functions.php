@@ -1,18 +1,42 @@
 <?php
 
+function getTags(array $ts){
+    global $tags;
+    $total = '';
+    foreach($ts as $t){
+        if(array_key_exists($t, $tags)){
+            $total .= '<span class="label label-info">' . $tags[$t] . '</span> ';
+        }
+    }
+    return $total;
+}
+
+function getRating($rating){
+    global $ratings;
+    if(array_key_exists($rating,$ratings)){
+        return '<span class="badge">' . $ratings[$rating] . '</span>';
+    }
+}
+
 function getMediaItem($item){
-        // TODO display all the attributes
-    return '<li class="list-group-item">' . $item['title'] . '</li>';
+    $content = '<li class="list-group-item">';
+    $content .= getRating($item['rating']);
+    $content .= $item['title'] . '<br>';
+    $content .= '<small>' . $item['description'] . '</small><br>';
+    $content .= getTags($item['tags']);
+    $content .= '</li>';
+    return $content;
 }
 
 function getNewItem($type){
         // TODO save all attributes and not only the name
     if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
         $item = [
-            'title' => $_POST['title']?:''
+            'title' => $_POST['title']?:'',
+            'description' => $_POST['description']?:'',
+            'tags' => $_POST['tags']?:'',
+            'rating' => $_POST['rating']?:'',
         ];
-
-
         return getMediaItem($item);
     }
 }
