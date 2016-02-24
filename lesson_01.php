@@ -3,58 +3,13 @@
 $title = 'Lesson 01';
 include('html_header.php');
 
-$categories = [
-    'movies' => 'Filme',
-    'music' => 'Musik',
-    'books' => 'Bücher'
-];
+// include all the root data
+include('media_data.php');
 
-$media = [
-    'movies' => [
-        'Gladiator',
-        'Das Boot',
-        'Big Fish'
-    ],
-    'music' => [
-        'Tubular Bells',
-        'Nectar I'
-    ],
-    'books' => [
-        'Der Club Dumas',
-        'Also Sprach Zarathustra',
-        'Gödel - Escher - Bach',
-        'ES'
-    ]
-];
-
-function getMediaItem($name){
-    return '<li class="list-group-item">' . $name . '</li>';
-}
-
-function getNewItem($type){
-    if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
-        return getMediaItem($_POST['name']);
-    }
-}
-
-function getCategory($key, $name){
-    global $media;
-    if(array_key_exists($key, $media)){
-        $content = '<div class="col-lg-4"><h3>' . $name . '</h3>';
-        $content .= '<div><ul class="list-group">';
-
-        foreach($media[$key] as $element){
-            $content .= getMediaItem($element);
-        }
-
-        $content .= getNewItem($key);
-        $content .= '</ul></div></div>';
-        return $content;
-    }
-}
+// include the functions used in the script below
+include('functions.php');
 
 ?>
-
 
 <div class="container">
     <!-- In case there is some Request data - display it here -->
@@ -92,7 +47,7 @@ function getCategory($key, $name){
         <div class="form-group">
             <label for="name" class="col-sm-4 control-label">Titel</label>
             <div class="col-sm-8">
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="title" class="form-control">
             </div>
         </div>
         <!-- Textarea  -->
@@ -102,51 +57,32 @@ function getCategory($key, $name){
                 <textarea name="description" class="form-control"></textarea>
             </div>
         </div>
+
         <!-- Radio Buttons -->
         <div class="form-group">
             <label class="col-sm-4 control-label">Bewertung</label>
             <div class="col-sm-8">
+                <?php foreach($ratings as $r_index => $rating){ ?>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="rating" value="1">lame
+                        <input type="radio" name="rating" value="<?php print $r_index; ?>"><?php print $rating; ?>
                     </label>
                 </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="rating" value="2">mediocre
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="rating" value="3">pretty cool
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="rating" value="4">awesome as a shark high-fiving a bear during an explosion in space
-                    </label>
-                </div>
+                <?php } ?>
             </div>
         </div>
+
         <!-- Checkboxes -->
         <div class="form-group">
             <label class="col-sm-4 control-label">Tags</label>
             <div class="col-sm-8">
+                <?php foreach($tags as $short => $long){ ?>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="tags[]" value="fav">favorite
+                        <input type="checkbox" name="tags[]" value="<?php print $short; ?>"><?php print $long; ?>
                     </label>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="tags[]" value="tclist">to-consume list
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="tags[]" value="dont">don't!
-                    </label>
-                </div>
+                <?php } ?>
             </div>
         </div>
 
