@@ -1,5 +1,31 @@
 <?php
 
+function getItemsFromDatabase($media_array){
+    global $conn;
+
+    $sql = "SELECT * FROM media_items";
+    if($result = $conn->query($sql)){
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $item = [];
+
+                $item['title'] = $row['title'];
+                $item['description'] = $row['desc'];
+                $item['rating'] = $row['rating'];
+                $item['tags'] = explode(',', $row['tags']);
+
+                $media_array[$row['mediatype']][] = $item;
+            }
+        }
+        return $media_array;
+    }else{
+        die ('query couldnt executed');
+        return [];
+    }
+
+
+}
+
 function getTags(array $ts){
     global $tags;
     $total = '';
@@ -29,7 +55,7 @@ function getMediaItem($item){
 }
 
 function getNewItem($type){
-        // TODO save all attributes and not only the name
+    // TODO save all attributes and not only the name
     if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
         $item = [
             'title' => $_POST['title']?:'',

@@ -20,6 +20,16 @@ $categories = [
 ];
 
 $media = [
+    'movies' => [],
+    'music' => [],
+    'books' => []
+];
+
+$media = getItemsFromDatabase($media);
+
+
+/*
+$media = [
     'movies' => [
         [
             'title' => 'Gladiator',
@@ -75,3 +85,4 @@ $media = [
         ]
     ]
 ];
+*/
