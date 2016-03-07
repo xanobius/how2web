@@ -9,6 +9,9 @@ include('html_header.php');
 // include the functions used in the script below
 include('functions.php');
 
+// save a new item, if there is need to
+saveNewItem();
+
 // include all the root data
 include('media_data.php');
 

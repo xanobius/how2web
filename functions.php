@@ -54,16 +54,21 @@ function getMediaItem($item){
     return $content;
 }
 
-function getNewItem($type){
-    // TODO save all attributes and not only the name
-    if(array_key_exists('type', $_POST) && $_POST['type'] == $type){
-        $item = [
-            'title' => $_POST['title']?:'',
-            'description' => $_POST['description']?:'',
-            'tags' => $_POST['tags']?:'',
-            'rating' => $_POST['rating']?:'',
-        ];
-        return getMediaItem($item);
+function saveNewItem(){
+    global $conn;
+    if(array_key_exists('type', $_POST)){
+        $sql = 'INSERT INTO media_items (`mediatype`, `title`, `desc`, `rating`, `tags`) VALUES ('.
+            '"' . $_POST['type'] . '",' .
+            '"' . $_POST['title'] . '",' .
+            '"' . $_POST['description'] . '",' .
+            '"' . $_POST['rating'] . '",' .
+            '"' . implode(',', $_POST['tags']) . '");';
+
+        if($conn->query($sql)){
+            print "Eintrag erfolgreich gespeichert";
+        }else{
+            print "Eintrag konnte nicht gespeichert werden :(";
+        }
     }
 }
 
@@ -77,7 +82,6 @@ function getCategory($key, $name){
             $content .= getMediaItem($element);
         }
 
-        $content .= getNewItem($key);
         $content .= '</ul></div></div>';
         return $content;
     }
