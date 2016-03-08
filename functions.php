@@ -75,7 +75,7 @@ function saveNewItem(){
 function getCategory($key, $name){
     global $media;
     if(array_key_exists($key, $media)){
-        $content = '<div class="col-lg-4"><h3>' . $name . '</h3>';
+        $content = '<div class="col-lg-3"><h3>' . $name . '</h3>';
         $content .= '<div><ul class="list-group">';
 
         foreach($media[$key] as $element){
