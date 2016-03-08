@@ -19,6 +19,36 @@ $categories = [
     'books' => 'Bücher'
 ];
 
+
+$sql = "SELECT * FROM media_items";
+$result = $conn->query($sql);
+
+$media = [
+    'movies' => [],
+    'music' => [],
+    'books' => []
+];
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+            // save the row in the same format as befor
+        $new_item = [
+            'title' => $row["title"],
+            'description' =>  $row["desc"],
+            'rating' => $row["rating"],
+            'tags' => explode(',', $row['tags'])
+        ];
+
+            // add the new item to the media array in the correct sub array
+        array_push($media[$row["mediatype"]], $new_item);
+
+    }
+} else {
+    echo "0 results";
+}
+
+/*
 $media = [
     'movies' => [
         [
@@ -75,3 +105,4 @@ $media = [
         ]
     ]
 ];
+*/

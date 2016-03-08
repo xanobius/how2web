@@ -3,6 +3,8 @@
 $title = 'Lesson 01';
 include('html_header.php');
 
+include('database_connection.php');
+
 // include all the root data
 include('media_data.php');
 
