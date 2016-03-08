@@ -1,13 +1,19 @@
 <?php
+// Create the database connection at the start
+include('database_connection.php');
+
 // Include the Header for correct HTML Output
 $title = 'Lesson 01';
 include('html_header.php');
 
-// include all the root data
-include('media_data.php');
-
 // include the functions used in the script below
 include('functions.php');
+
+// save a new item, if there is need to
+saveNewItem();
+
+// include all the root data
+include('media_data.php');
 
 ?>
 
