@@ -54,16 +54,25 @@ function getMediaItem($item)
     $content .= '<small>' . $item['description'] . '</small><br>';
     $content .= getTags($item['tags']);
 
+    // Buttonrow
     $content .= '<div class="text-right">';
+
+    // Edit Button
     $content .= '<a href="index.php?media_item_id=' . $item['id'] . '">';
     $content .= '<button type="button" class="btn btn-xs" aria-label="Editieren">';
     $content .= '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
     $content .= '</button>';
     $content .= '</a>';
+    // Delete Button
+    $content .= '<a href="index.php?delete_id=' . $item['id'] . '">';
+    $content .= '<button type="button" class="btn btn-xs" aria-label="Editieren">';
+    $content .= '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
+    $content .= '</button>';
+    $content .= '</a>';
+
     $content .= '</div>';
+    // END buttonrow
 
-
-//    Editieren</a></div>';
     $content .= '</li>';
 
 
@@ -77,6 +86,10 @@ function processSavings()
     } else {
         if (array_key_exists('type', $_POST)) {
             saveNewItem();
+        }else{
+            if(array_key_exists('delete_id', $_GET)){
+                deleteItem($_GET['delete_id']);
+            }
         }
     }
 }
@@ -120,6 +133,13 @@ function updateItem($id)
     }
 }
 
+function deleteItem($id)
+{
+    global $conn;
+    $qry = 'DELETE FROM media_items WHERE id=' .$id;
+    mysqli_query($conn, $qry);
+}
+
 function getCategory($key, $name)
 {
     global $media;
@@ -157,3 +177,4 @@ function getMediaItemById()
         'tags' => ''
     ];
 }
+

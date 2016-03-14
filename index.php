@@ -17,8 +17,9 @@ include('media_data.php');
 ?>
 <div class="container">
     <!-- In case there is some Request data - display it here -->
+    <!-- Stop display these things. It's getting annoing -->
     <?php if($_POST){
-        print '<div><pre>' . print_r($_POST, true) . '</pre></div>';
+        // print '<div><pre>' . print_r($_POST, true) . '</pre></div>';
     } ?>
 
     <!-- Display all Medias stored  -->
