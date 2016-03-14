@@ -86,3 +86,23 @@ function getCategory($key, $name){
         return $content;
     }
 }
+
+function getMediaItemById(){
+    global $conn;
+    // ID in url, so it's an edit attempt
+    if(isset($_GET['media_item_id'])){
+        // Is there a media item with this id?
+        $qry = "SELECT * FROM media_items WHERE id=" . $_GET['media_item_id'] . ";";
+        $result = mysqli_query($conn, $qry);
+        if($result->num_rows == 1){
+            return $result->fetch_assoc();
+        }
+    }
+    return [
+        'mediatype' => '',
+        'title' => '',
+        'desc' => '',
+        'rating' => '',
+        'tags' => ''
+    ];
+}
