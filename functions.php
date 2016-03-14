@@ -9,6 +9,7 @@ function getItemsFromDatabase($media_array){
             while($row = $result->fetch_assoc()){
                 $item = [];
 
+                $item['id'] = $row['id'];
                 $item['title'] = $row['title'];
                 $item['description'] = $row['desc'];
                 $item['rating'] = $row['rating'];
@@ -50,7 +51,20 @@ function getMediaItem($item){
     $content .= $item['title'] . '<br>';
     $content .= '<small>' . $item['description'] . '</small><br>';
     $content .= getTags($item['tags']);
+
+    $content .= '<div class="text-right">';
+    $content .=     '<a href="index.php?media_item_id='. $item['id'] .'">';
+    $content .=         '<button type="button" class="btn btn-xs" aria-label="Editieren">';
+    $content .=             '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>';
+    $content .=         '</button>';
+    $content .=     '</a>';
+    $content .= '</div>';
+
+
+//    Editieren</a></div>';
     $content .= '</li>';
+
+
     return $content;
 }
 
@@ -99,6 +113,7 @@ function getMediaItemById(){
         }
     }
     return [
+        'id' => 0,
         'mediatype' => '',
         'title' => '',
         'desc' => '',
