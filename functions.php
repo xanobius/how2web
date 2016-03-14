@@ -135,9 +135,15 @@ function updateItem($id)
 
 function deleteItem($id)
 {
+        // working vector: http://localhost/how2web/index.php?delete_id=0%20OR%201=1
     global $conn;
     $qry = 'DELETE FROM media_items WHERE id=' .$id;
-    mysqli_query($conn, $qry);
+    print $qry;
+    if(mysqli_query($conn, $qry)){
+        print "success!";
+    }else{
+        print "failed";
+    }
 }
 
 function getCategory($key, $name)
