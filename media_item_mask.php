@@ -11,7 +11,7 @@ if($item['id'] != 0){
 ?>
 
 <!-- Form to add a new medium -->
-<form action="index.php" method="post" class="form-horizontal">
+<form action="submit.php" method="post" class="form-horizontal">
     <?php echo $id_field; ?>
     <h2><?php echo $title; ?></h2>
     <!-- Dropdown -->

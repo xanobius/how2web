@@ -3,14 +3,11 @@
 include('database_connection.php');
 
 // Include the Header for correct HTML Output
-$title = 'Lesson 01';
+$title = 'Mediendatenbank';
 include('html_header.php');
 
 // include the functions used in the script below
 include('functions.php');
-
-// save a new item, if there is need to
-processSavings();
 
 // include all the root data
 include('media_data.php');

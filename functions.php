@@ -64,7 +64,7 @@ function getMediaItem($item)
     $content .= '</button>';
     $content .= '</a>';
     // Delete Button
-    $content .= '<a href="index.php?delete_id=' . $item['id'] . '">';
+    $content .= '<a href="submit.php?delete_id=' . $item['id'] . '">';
     $content .= '<button type="button" class="btn btn-xs" aria-label="Editieren">';
     $content .= '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
     $content .= '</button>';
@@ -106,9 +106,9 @@ function saveNewItem()
         '"' . implode(',', $_POST['tags']) . '");';
 
     if ($conn->query($sql)) {
-        print "Eintrag erfolgreich gespeichert";
+        // print "Eintrag erfolgreich gespeichert";
     } else {
-        print "Eintrag konnte nicht gespeichert werden :(";
+        // print "Eintrag konnte nicht gespeichert werden :(";
     }
 }
 
