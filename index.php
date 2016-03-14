@@ -10,7 +10,7 @@ include('html_header.php');
 include('functions.php');
 
 // save a new item, if there is need to
-saveNewItem();
+processSavings();
 
 // include all the root data
 include('media_data.php');
