@@ -106,9 +106,11 @@ function saveNewItem()
         '"' . implode(',', $_POST['tags']) . '");';
 
     if ($conn->query($sql)) {
-        print "Eintrag erfolgreich gespeichert";
+        reloadSite();
+        // print "Eintrag erfolgreich gespeichert";
     } else {
-        print "Eintrag konnte nicht gespeichert werden :(";
+        die('oh no, there was a problem');
+        //print "Eintrag konnte nicht gespeichert werden :(";
     }
 }
 
@@ -128,6 +130,7 @@ function updateItem($id)
             `tags` = "'. implode(",", $_POST["tags"]) . '" 
             WHERE `id`=' . $id . ';';
         mysqli_query($conn, $qry);
+        reloadSite();
     }else{
         die('ungültige ID');
     }
@@ -138,6 +141,7 @@ function deleteItem($id)
     global $conn;
     $qry = 'DELETE FROM media_items WHERE id=' .$id;
     mysqli_query($conn, $qry);
+    reloadSite();
 }
 
 function getCategory($key, $name)
@@ -178,3 +182,7 @@ function getMediaItemById()
     ];
 }
 
+function reloadSite(){
+    header("Location: index.php");
+    die();
+}
