@@ -81,34 +81,6 @@ class MediaItem{
     }
 
     /**
-     * @param int $id
-     * @return MediaItem
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMediatype()
-    {
-        return $this->mediatype;
-    }
-
-    /**
-     * @param int $mediatype
-     * @return MediaItem
-     */
-    public function setMediatype($mediatype)
-    {
-        $this->mediatype = $mediatype;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getTitle()
