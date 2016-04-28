@@ -97,19 +97,29 @@ function processSavings()
 function saveNewItem()
 {
     global $conn;
-
-    $sql = 'INSERT INTO media_items (`mediatype`, `title`, `desc`, `rating`, `tags`) VALUES (' .
-        '"' . $_POST['type'] . '",' .
-        '"' . $_POST['title'] . '",' .
-        '"' . $_POST['description'] . '",' .
-        '"' . $_POST['rating'] . '",' .
-        '"' . implode(',', $_POST['tags']) . '");';
-
-    if ($conn->query($sql)) {
-        // print "Eintrag erfolgreich gespeichert";
-    } else {
-        // print "Eintrag konnte nicht gespeichert werden :(";
+    
+    switch($_POST['type']){
+        case 'books':
+            $item = new Book();
+            break;
+        case 'games':
+            $item = new Game();
+            break;
+        case 'music':
+            $item = new Music();
+            break;
+        case 'movies':
+            $item = new Movie();
+            break;
+        default:
+            $item = null;
     }
+
+    $item->setDesc($_POST['description']);
+    $item->setRating($_POST['rating']);
+    $item->setTags($_POST['tags']);
+    $item->setTitle($_POST['title']);
+    $item->save();
 }
 
 function updateItem($id)

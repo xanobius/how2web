@@ -1,6 +1,11 @@
 <?php
 // Create the database connection at the start
 include('database_connection.php');
+include('classes\MediaItem.php');
+include('classes\Game.php');
+include('classes\Movie.php');
+include('classes\Book.php');
+include('classes\Music.php');
 
 // Include the Header for correct HTML Output
 $title = 'Daten werden persistiert';
